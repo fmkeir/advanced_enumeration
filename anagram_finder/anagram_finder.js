@@ -4,8 +4,12 @@ const AnagramFinder = function (word) {
 
 AnagramFinder.prototype.findAnagrams = function (otherWords) {
   return otherWords.filter(otherWord => {
-    return (otherWord.toLowerCase().split('').sort().join('')) === (this.word.toLowerCase().split('').sort().join('')) && otherWord !== this.word;
+    return this.prepare(otherWord) === this.prepare(this.word) && otherWord !== this.word;
   });
+}
+
+AnagramFinder.prototype.prepare = function (word) {
+  return word.toLowerCase().split('').sort().join('');
 }
 
 module.exports = AnagramFinder;
